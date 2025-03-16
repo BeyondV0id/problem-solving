@@ -1,16 +1,15 @@
 class Solution {
 public:
     bool canAliceWin(int n) {
-        bool aliceWin = false;
-        int need = 10;
+        bool isAliceTurn = false;
+        int stonesToRemove = 10;
 
-        while (n >= need)
-        {
-            n -= need;
-            need--;
-            aliceWin = !aliceWin;
+        while (n >= stonesToRemove) {
+            n -= stonesToRemove;
+            stonesToRemove--;
+            isAliceTurn = !isAliceTurn;
         }
 
-        return aliceWin;
+        return isAliceTurn; // Alice wins if it was her turn last
     }
 };
