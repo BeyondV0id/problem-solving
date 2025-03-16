@@ -16,7 +16,14 @@ public:
 
         int n = word1.length();//for word1
         int m = word2.length();//for word2
-        //intialize dp[m][n]
+        //intialize dp[m][n] to tabulte
+           //    h  o  r  s  e
+        /*    0  1  2  3  4  5  
+           r  1 
+           0  2 
+           s  3
+
+        */
         vector <vector<int>> dp(m+1,  vector<int>(n+1,0));
 
         //base cases:
