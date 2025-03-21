@@ -1,4 +1,4 @@
-// Last updated: 3/21/2025, 9:03:23 PM
+// Last updated: 3/21/2025, 9:03:31 PM
 class MyQueue {
 private:
 stack<int>s1,s2;
