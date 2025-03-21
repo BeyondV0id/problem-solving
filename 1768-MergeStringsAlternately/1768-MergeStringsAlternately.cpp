@@ -1,16 +1,16 @@
-// Last updated: 3/21/2025, 6:54:55 PM
+// Last updated: 3/21/2025, 6:55:34 PM
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
-        string merged = "";
-        int i=0,j=0;
-
-        while(i<word1.size() || j<word2.size()){
-            if(i<word1.size()) merged += word1[i++];
-            if(j<word2.size()) merged += word2[j++];
-
+        int n1 = word1.length(), n2 = word2.length();
+        int n = min(n1, n2);
+        string ans = "";
+        for(int i=0; i<n; i++) {
+            ans += word1[i];
+            ans += word2[i];
         }
-        return merged;
-        
+        if(n1>n2) ans += word1.substr(n, n1-n);
+        else if(n2>n1) ans += word2.substr(n, n2-n);
+        return ans;
     }
 };
