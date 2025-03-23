@@ -1,15 +1,9 @@
-// Last updated: 3/23/2025, 11:21:12 AM
-#include <vector>
-#include <algorithm>  // For max_element
-#include <cmath>      // For ceil
-
-using namespace std;
-
+// Last updated: 3/23/2025, 11:33:10 AM
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
         int low = 1, high = *max_element(piles.begin(), piles.end());
-        int ans = high; // Store the minimum possible eating speed
+        int ans = high;
         
         while (low <= high) {
             int mid = (low + high) / 2;
