@@ -1,4 +1,4 @@
-// Last updated: 3/24/2025, 5:36:25 PM
+// Last updated: 3/24/2025, 5:44:39 PM
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
