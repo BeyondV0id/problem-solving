@@ -1,4 +1,4 @@
-// Last updated: 3/24/2025, 5:59:39 PM
+// Last updated: 3/24/2025, 6:04:01 PM
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -7,19 +7,18 @@ public:
         
         while (l <= r) {
             int m = l + (r - l) / 2;
-            minimum = min(minimum, nums[m]);
-
-            // First check for duplicate case
+            minimum = min(minimum,nums[m]);
+            
             if (nums[m] == nums[r]) { 
-                r--; // Remove duplicate
+                r--; // Remove duplicates
             } 
-            else if (nums[m] > nums[r]) { 
-                // Min must be on the right side
+            else if (nums[l] <= nums[m]) { 
+                minimum = min(nums[l], minimum);
                 l = m + 1;
             } 
             else { 
-                // Min is on the left side (including mid)
-                r = m;
+                minimum = min(nums[m], minimum);
+                r = m - 1;
             }
         }
         return minimum;
