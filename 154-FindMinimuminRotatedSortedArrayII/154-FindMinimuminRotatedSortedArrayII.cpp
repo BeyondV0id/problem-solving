@@ -1,4 +1,4 @@
-// Last updated: 3/24/2025, 6:04:01 PM
+// Last updated: 3/24/2025, 6:05:06 PM
 class Solution {
 public:
     int findMin(vector<int>& nums) {
