@@ -1,19 +1,18 @@
-// Last updated: 3/27/2025, 6:19:50 PM
+// Last updated: 3/27/2025, 6:22:38 PM
 class Solution {
-
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
-        int size = temperatures.size();
-        vector<int> result(size, 0);
-        stack<int> s;
-        for (int i = 0; i < size; i++) {
-            while (!s.empty() && temperatures[i] > temperatures[s.top()]) {
-                int nextWarmIdx = s.top();
-                s.pop();
-                result[nextWarmIdx] = i-nextWarmIdx;
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        int n=temp.size();
+        vector<int>ans(n,0);
+        stack<int>st;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && temp[st.top()]<temp[i]){
+          int prev_index = st.top(); // Get previous day index
+                st.pop();
+                ans[prev_index] = i - prev_index;
             }
-            s.push(i);
+           st.push(i);
         }
-        return result;
+        return ans;
     }
 };
