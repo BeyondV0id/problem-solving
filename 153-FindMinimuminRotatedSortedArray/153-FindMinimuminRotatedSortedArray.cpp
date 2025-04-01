@@ -1,4 +1,4 @@
-// Last updated: 3/23/2025, 10:27:52 AM
+// Last updated: 4/1/2025, 6:19:10 PM
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -6,6 +6,7 @@ public:
         int minimum = INT_MAX;
         while (l <= r) {
             int m = l + (r - l) / 2;
+            minimum = min(nums[m],minimum);
             if (nums[l] <= nums[m]) {
                 minimum = min(nums[l], minimum);
                 l = m + 1;
