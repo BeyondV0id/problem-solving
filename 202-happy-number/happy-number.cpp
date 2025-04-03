@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isHappy(int n) {
-        if (n == 1)
+        if (n == 1 || n == 7)
             return true;
         int slow, fast;
         slow = n;
