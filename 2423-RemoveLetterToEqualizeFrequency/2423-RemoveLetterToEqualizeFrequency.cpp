@@ -1,4 +1,4 @@
-// Last updated: 4/3/2025, 6:45:40 PM
+// Last updated: 4/3/2025, 6:49:33 PM
 class Solution {
 public:
     bool equalFrequency(string word) {
@@ -10,13 +10,13 @@ public:
             if (freq[i] == 0)
                 continue;
             freq[i]--;
-            unordered_set<int> virat;
+            unordered_set<int> freqSet;
             for (int f : freq)
                 if (f > 0)
-                    virat.insert(f);
-            if (virat.size() == 1)
+                    freqSet.insert(f);
+            bool allSameFreq = (freqSet.size() == 1);
+            if (allSameFreq)
                 return true;
-
             freq[i]++;
         }
         return false;
