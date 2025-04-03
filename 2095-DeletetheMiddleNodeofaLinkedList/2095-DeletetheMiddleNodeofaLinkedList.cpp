@@ -1,4 +1,4 @@
-// Last updated: 4/3/2025, 8:44:10 PM
+// Last updated: 4/3/2025, 8:44:22 PM
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -22,7 +22,6 @@ public:
             fast=fast->next->next;
         }
         prevOfslow->next = slow->next;
-        delete slow;
         return head;
         
 
