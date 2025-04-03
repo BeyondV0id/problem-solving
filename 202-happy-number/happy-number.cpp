@@ -21,7 +21,6 @@ public:
             sumOfSquares += rem * rem;
             n = n / 10;
         }
-        cout << sumOfSquares << endl;
         return sumOfSquares;
     }
 };
