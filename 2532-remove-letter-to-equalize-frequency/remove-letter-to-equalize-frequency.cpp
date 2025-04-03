@@ -9,13 +9,13 @@ public:
             if (freq[i] == 0)
                 continue;
             freq[i]--;
-            unordered_set<int> virat;
+            unordered_set<int> freqSet;
             for (int f : freq)
                 if (f > 0)
-                    virat.insert(f);
-            if (virat.size() == 1)
+                    freqSet.insert(f);
+            bool allSameFreq = (freqSet.size() == 1);
+            if (allSameFreq)
                 return true;
-
             freq[i]++;
         }
         return false;
