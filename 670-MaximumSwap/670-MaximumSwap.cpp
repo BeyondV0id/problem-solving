@@ -1,4 +1,4 @@
-// Last updated: 4/5/2025, 9:59:06 AM
+// Last updated: 4/5/2025, 10:00:04 AM
 class Solution {
 public:
     int maximumSwap(int num) {
@@ -7,7 +7,8 @@ public:
         for (int i = 0; i < s.size() - 1 && !swapped; i++) {
             int max_indx = i;
             for (int j = i + 1; j < s.size(); j++) {
-                if (s[j] > s[i] && s[j] >= s[max_indx]) {
+                bool foundGreater =  s[j] > s[i] && s[j] >= s[max_indx];
+                if (foundGreater) {
                     max_indx = j;
                 }
             }
