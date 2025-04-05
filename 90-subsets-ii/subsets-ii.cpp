@@ -30,13 +30,6 @@ but at      {1 , 2}        and       {1 , 3}
 
 skip if i not eqaul to index and nums[i] == nums[i-1]//sorted
 
-
- { },
- { 1 },
- { 1 2 },
- { 1 2 2 },
- { 2 },
- { 2 2 },
  */
 
 class Solution {
