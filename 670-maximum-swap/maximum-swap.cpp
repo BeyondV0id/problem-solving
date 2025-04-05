@@ -6,7 +6,8 @@ public:
         for (int i = 0; i < s.size() - 1 && !swapped; i++) {
             int max_indx = i;
             for (int j = i + 1; j < s.size(); j++) {
-                if (s[j] > s[i] && s[j] >= s[max_indx]) {
+                bool foundGreater =  s[j] > s[i] && s[j] >= s[max_indx];
+                if (foundGreater) {
                     max_indx = j;
                 }
             }
