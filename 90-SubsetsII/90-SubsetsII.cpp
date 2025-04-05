@@ -1,4 +1,4 @@
-// Last updated: 4/5/2025, 11:56:00 AM
+// Last updated: 4/5/2025, 11:56:08 AM
 /*
 case 1:
  { },
@@ -31,13 +31,6 @@ but at      {1 , 2}        and       {1 , 3}
 
 skip if i not eqaul to index and nums[i] == nums[i-1]//sorted
 
-
- { },
- { 1 },
- { 1 2 },
- { 1 2 2 },
- { 2 },
- { 2 2 },
  */
 
 class Solution {
