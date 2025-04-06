@@ -1,15 +1,17 @@
-// Last updated: 4/6/2025, 7:03:21 PM
+// Last updated: 4/6/2025, 7:04:15 PM
 class Solution {
 public:
     int climbStairs(int n) {
-        vector<int> dp(n + 2, 0);
-        dp[0] = 1;
-
-        for (int i = 0; i <= n-1; i++) {
-            dp[i + 1] += dp[i];
-            dp[i + 2] += dp[i];
+        if (n <= 2) return n;
+        
+        int prev1 = 2, prev2 = 1, curr;
+        
+        for (int i = 3; i <= n; i++) {
+            curr = prev1 + prev2;  // Fibonacci relation
+            prev2 = prev1;
+            prev1 = curr;
         }
-
-        return dp[n];
+        
+        return curr;
     }
 };
