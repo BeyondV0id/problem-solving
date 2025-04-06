@@ -1,4 +1,4 @@
-// Last updated: 4/6/2025, 6:55:14 PM
+// Last updated: 4/6/2025, 6:55:23 PM
 class Solution {
 private:
     /*int findjump(int indx,int jumps,vector<int>& nums){
