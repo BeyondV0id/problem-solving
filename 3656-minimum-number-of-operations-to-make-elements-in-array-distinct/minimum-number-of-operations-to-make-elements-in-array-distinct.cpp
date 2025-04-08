@@ -8,20 +8,20 @@ private:
         }
     }
 
-    bool isUnique(vector<int>& nums) {
+    bool notUnique(vector<int>& nums) {
         unordered_set<int> freq;
         for (int i = 0; i < nums.size(); i++) {
             if (freq.count(nums[i]))
-                return false;
+                return true;
             freq.insert(nums[i]);
         }
-        return true;
+        return false;
     }
 
 public:
     int minimumOperations(vector<int>& nums) {
         int cnt = 0;
-        while (!isUnique(nums)) {
+        while (notUnique(nums)) {
             removeElements(nums);
             cnt++;
         }
