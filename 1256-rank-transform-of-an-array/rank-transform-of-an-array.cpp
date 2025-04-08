@@ -4,7 +4,6 @@
  * [1331] Rank Transform of an Array
  */
 
-#include <algorithm> // For std::lower_bound
 
 // @lc code=start
 class Solution {
