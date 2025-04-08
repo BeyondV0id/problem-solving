@@ -1,11 +1,10 @@
-// Last updated: 4/8/2025, 5:43:07 PM
+// Last updated: 4/8/2025, 5:44:23 PM
 /*
  * @lc app=leetcode id=1331 lang=cpp
  *
  * [1331] Rank Transform of an Array
  */
 
-#include <algorithm> // For std::lower_bound
 
 // @lc code=start
 class Solution {
