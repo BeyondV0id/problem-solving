@@ -1,4 +1,4 @@
-// Last updated: 4/9/2025, 5:29:57 PM
+// Last updated: 4/9/2025, 5:34:49 PM
 class Solution {
 public:
     int minOperations(vector<int>& nums, int k) {
@@ -6,7 +6,7 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] < k)
                 return -1;
-            if (nums[i] > k)
+            if (nums[i] != k)
                 freq[nums[i]]++;
         }
         int cnt = 0;
