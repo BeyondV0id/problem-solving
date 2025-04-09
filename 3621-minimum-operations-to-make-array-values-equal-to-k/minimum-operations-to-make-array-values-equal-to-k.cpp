@@ -5,7 +5,7 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] < k)
                 return -1;
-            if (nums[i] > k)
+            if (nums[i] != k)
                 freq[nums[i]]++;
         }
         int cnt = 0;
