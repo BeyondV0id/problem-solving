@@ -1,4 +1,4 @@
-// Last updated: 4/14/2025, 7:43:59 AM
+// Last updated: 4/14/2025, 7:47:44 AM
 class Solution {
 public:
     int countGoodTriplets(vector<int>& arr, int a, int b, int c) {
