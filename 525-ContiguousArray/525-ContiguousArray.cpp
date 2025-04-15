@@ -1,10 +1,10 @@
-// Last updated: 4/15/2025, 3:17:23 PM
+// Last updated: 4/15/2025, 9:31:13 PM
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
         unordered_map<int, int> indxMap;
         indxMap[0] = -1;
-        int diff  = 0;
+        int diff = 0;
         indxMap[diff] = -1;
         int maxLen = 0;
 
@@ -15,9 +15,8 @@ public:
                 diff--;
             if (indxMap.count(diff))
                 maxLen = max(maxLen, i - indxMap[diff]);
-            if (indxMap.find(diff) == indxMap.end()) {//the diff is not in the map....
+            else
                 indxMap[diff] = i;
-            }
         }
         return maxLen;
     }
