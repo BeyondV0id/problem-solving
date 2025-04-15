@@ -1,4 +1,4 @@
-// Last updated: 4/15/2025, 3:07:50 PM
+// Last updated: 4/15/2025, 3:08:05 PM
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
