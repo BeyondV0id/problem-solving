@@ -11,7 +11,7 @@ public:
             char tChar = t[i];
             if (s_t.count(sChar) && s_t[sChar] != tChar)
                 return false;
-            else if (t_s.count(tChar) && t_s[tChar] != sChar)
+            if (t_s.count(tChar) && t_s[tChar] != sChar)
                 return false;
             s_t[sChar] = tChar;
             t_s[tChar] = sChar;
