@@ -1,33 +1,12 @@
-// Last updated: 4/18/2025, 7:09:29 PM
+// Last updated: 4/18/2025, 7:09:56 PM
 class Solution {
-private:
-    vector<int> findpos(vector<int>& nums, int target) {
-        int l = 0;
-        vector<int>result;
-        int r = nums.size() - 1, indx = -1;
-        while (l <= r) {
-            int m = l + (r - l) / 2;
-            if (nums[m] >= target) {
-                if (nums[m] == target)
-                    indx = m;
-                r = m - 1;
-            } else {
-                l = m + 1;
-            }
-        }
-        if (indx == -1)return {};
-        while (indx < nums.size() && nums[indx] == target) {
-            result.push_back(indx);
-            indx++;
-        }
-        return result;
-        
-    }
-
 public:
     vector<int> targetIndices(vector<int>& nums, int target) {
-
-        sort(nums.begin(), nums.end());
-        return findpos(nums,target);
+        vector<int> ans;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==target) ans.push_back(i);
+        }
+        return ans;
     }
 };
