@@ -1,4 +1,4 @@
-// Last updated: 4/20/2025, 6:47:42 AM
+// Last updated: 4/20/2025, 6:49:05 AM
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
