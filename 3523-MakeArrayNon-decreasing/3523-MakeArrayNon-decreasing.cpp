@@ -1,7 +1,9 @@
-// Last updated: 4/20/2025, 12:12:04 PM
+// Last updated: 4/20/2025, 12:12:30 PM
 class Solution {
 public:
     int maximumPossibleSize(vector<int>& nums) {
+        //monotonic increasinng stack
+        
         stack<int> s;
 
         for (int num : nums) {
