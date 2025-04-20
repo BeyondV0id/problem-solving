@@ -2,18 +2,18 @@ class Solution {
 public:
     int maximumPossibleSize(vector<int>& nums) {
         //monotonic increasinng stack
-        
-        stack<int> s;
+        int n = nums.size();
+        int cnt = 1;
+        int prev = nums[0];
 
-        for (int num : nums) {
-            while (!s.empty() && s.top() > num) {
-                int top = s.top();
-                s.pop();
-                num = top;
+        for (int i=1;i<n;i++) {
+            if(nums[i]>=prev){
+                cnt++;
+                prev = nums[i];
+                
             }
-            s.push(num);
         }
 
-        return s.size();
+       return cnt;
     }
 };
