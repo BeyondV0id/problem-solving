@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maximumPossibleSize(vector<int>& nums) {
+        //monotonic increasing stack
         stack<int> s;
 
         for (int num : nums) {
