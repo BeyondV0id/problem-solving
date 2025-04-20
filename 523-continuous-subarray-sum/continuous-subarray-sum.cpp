@@ -4,7 +4,6 @@ public:
         unordered_map<int, int> seen;
         int sum = 0;
         seen[0] = -1;
-        bool found = false;
         for (int i = 0; i < nums.size(); i++) {
             sum += nums[i];
             if (k != 0)
@@ -12,13 +11,12 @@ public:
             if (seen.count(sum)) {
                 int indx = seen[sum];
                 if (i - indx >= 2) {
-                    found = true;
-                    break;
+                    return true;
                 }
             } else {
                 seen[sum] = i;
             }
         }
-        return found;
+        return false;
     }
 };
