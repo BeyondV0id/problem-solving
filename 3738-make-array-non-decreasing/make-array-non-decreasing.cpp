@@ -1,17 +1,17 @@
 class Solution {
 public:
     int maximumPossibleSize(vector<int>& nums) {
-        stack<int> stk;
+        stack<int> s;
 
         for (int num : nums) {
-            while (!stk.empty() && stk.top() > num) {
-                int top = stk.top();
-                stk.pop();
+            while (!s.empty() && s.top() > num) {
+                int top = s.top();
+                s.pop();
                 num = max(top, num);
             }
-            stk.push(num);
+            s.push(num);
         }
 
-        return stk.size();
+        return s.size();
     }
 };
