@@ -1,4 +1,4 @@
-// Last updated: 4/22/2025, 4:04:24 AM
+// Last updated: 4/22/2025, 4:04:31 AM
 class Solution {
 public:
     int countQuadruplets(vector<int>& nums) {
