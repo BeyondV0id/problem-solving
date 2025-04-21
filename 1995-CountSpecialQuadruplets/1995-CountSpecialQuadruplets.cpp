@@ -1,26 +1,15 @@
-// Last updated: 4/22/2025, 4:04:31 AM
+// Last updated: 4/22/2025, 4:06:00 AM
 class Solution {
 public:
     int countQuadruplets(vector<int>& nums) {
-    int n = nums.size();
-    int cnt = 0;
-    for (int c = 2; c < n - 1; c++) {
-        unordered_map<int, int> sumcnt;
-        for (int a = 0; a < c; a++) {
-            for (int b = a + 1; b < c; b++) {
-                int sum = nums[a] + nums[b];
-                sumcnt[sum]++;
-            }
-        }
-        for (int d = c + 1; d < n; d++) {
-            int diff = nums[d] - nums[c];
-            if (sumcnt.count(diff)) {
-                cnt += sumcnt[diff];
-            }
-        }
+        int res = 0, n = nums.size();
+        
+        for (int i = 0; i < n; i++)
+            for (int j = i+1; j < n; j++)
+                for (int k = j+1; k < n; k++)
+                    for (int l = k+1; l < n; l++)
+                        if (nums[i] + nums[j] + nums[k] == nums[l]) res++;
+
+        return res;
     }
-
-    return cnt;
-}
-
 };
