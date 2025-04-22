@@ -1,4 +1,4 @@
-// Last updated: 4/22/2025, 5:54:16 PM
+// Last updated: 4/22/2025, 5:55:56 PM
 class Solution {
 public:
     int numRabbits(vector<int>& answers) {
@@ -11,17 +11,15 @@ public:
             unique.insert(num);
         }
         for (int num : unique) {
-            if(freq[num] == 0)continue;
+            if (freq[num] == 0)
+                continue;
             int groupsize = num + 1;
             int rabbits = freq[num];
             if (rabbits <= num) {
                 cnt += groupsize;
-            }
-            else{
-                int grps = (rabbits+groupsize-1)/groupsize;
-                cnt+=grps*groupsize;
-
-                
+            } else {
+                int grps = (rabbits + groupsize - 1) / groupsize;
+                cnt += grps * groupsize;
             }
         }
         return cnt;
