@@ -20,9 +20,9 @@ public:
             if (grps[sum] > maxval) {
                 maxval = grps[sum];
                 cnt = 1;
-            }
-            else if (grps[sum] == maxval) 
-                    cnt++;
-            }return cnt;
+            } else if (grps[sum] == maxval)
+                cnt++;
         }
+        return cnt;
+    }
 };
