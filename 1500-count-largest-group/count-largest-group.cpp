@@ -17,11 +17,12 @@ public:
         for (int i = 1; i <= n; i++) {
             int sum = find_digit_Sum(i);
             grps[sum]++;
-            if (grps[sum] > maxval) {
+            if (grps[sum] == maxval)
+                cnt++;
+            else if (grps[sum] > maxval) {
                 maxval = grps[sum];
                 cnt = 1;
-            } else if (grps[sum] == maxval)
-                cnt++;
+            } 
         }
         return cnt;
     }
