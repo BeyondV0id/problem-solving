@@ -1,4 +1,4 @@
-// Last updated: 4/23/2025, 9:23:16 AM
+// Last updated: 4/23/2025, 9:52:55 AM
 class Solution {
 private:
     int find_digit_Sum(int num) {
@@ -18,11 +18,12 @@ public:
         for (int i = 1; i <= n; i++) {
             int sum = find_digit_Sum(i);
             grps[sum]++;
-            if (grps[sum] > maxval) {
+            if (grps[sum] == maxval)
+                cnt++;
+            else if (grps[sum] > maxval) {
                 maxval = grps[sum];
                 cnt = 1;
-            } else if (grps[sum] == maxval)
-                cnt++;
+            } 
         }
         return cnt;
     }
