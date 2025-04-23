@@ -1,4 +1,4 @@
-// Last updated: 4/23/2025, 9:22:56 AM
+// Last updated: 4/23/2025, 9:23:08 AM
 class Solution {
 private:
     int find_digit_Sum(int num) {
@@ -21,9 +21,9 @@ public:
             if (grps[sum] > maxval) {
                 maxval = grps[sum];
                 cnt = 1;
-            }
-            else if (grps[sum] == maxval) 
-                    cnt++;
-            }return cnt;
+            } else if (grps[sum] == maxval)
+                cnt++;
         }
+        return cnt;
+    }
 };
