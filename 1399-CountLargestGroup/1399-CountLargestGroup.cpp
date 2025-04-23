@@ -1,4 +1,4 @@
-// Last updated: 4/23/2025, 9:19:22 AM
+// Last updated: 4/23/2025, 9:22:56 AM
 class Solution {
 private:
     int find_digit_Sum(int num) {
@@ -12,23 +12,18 @@ private:
 
 public:
     int countLargestGroup(int n) {
+        int maxval = 0;
+        int cnt = 0;
         unordered_map<int, int> grps;
         for (int i = 1; i <= n; i++) {
             int sum = find_digit_Sum(i);
             grps[sum]++;
-        }
-        int maxVal = 1;
-        for (auto num : grps) {
-            if (num.second > maxVal) {
-                maxVal = num.second;
+            if (grps[sum] > maxval) {
+                maxval = grps[sum];
+                cnt = 1;
             }
+            else if (grps[sum] == maxval) 
+                    cnt++;
+            }return cnt;
         }
-        int cnt = 0;
-        for (auto num : grps) {
-            if (num.second == maxVal) {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
 };
