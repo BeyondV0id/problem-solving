@@ -1,23 +1,69 @@
-// Last updated: 4/26/2025, 4:15:52 PM
+// Last updated: 4/26/2025, 4:16:31 PM
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        vector<pair<int, int>> zerolocs;
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                if (matrix[i][j] == 0)
-                    zerolocs.push_back({i, j});
+        int rows = matrix.size();
+        int cols = matrix[0].size();
 
-        for (auto& z : zerolocs) {
-            int x = z.first;
-            int y = z.second;
-            for (int i = 0; i < m; i++)
-                matrix[i][y] = 0;
-            for (int j = 0; j < n; j++)
-                matrix[x][j] = 0;
+        bool firstRowHasZero = false;
+        bool firstColHasZero = false;
+
+        // Check if the first row contains zero
+        for (int c = 0; c < cols; c++) {
+            if (matrix[0][c] == 0) {
+                firstRowHasZero = true;
+                break;
+            }
         }
+
+        // Check if the first column contains zero
+        for (int r = 0; r < rows; r++) {
+            if (matrix[r][0] == 0) {
+                firstColHasZero = true;
+                break;
+            }
+        }
+
+        // Use the first row and column as markers
+        for (int r = 1; r < rows; r++) {
+            for (int c = 1; c < cols; c++) {
+                if (matrix[r][c] == 0) {
+                    matrix[r][0] = 0;
+                    matrix[0][c] = 0;
+                }
+            }
+        }
+
+        // Set the marked rows to zero
+        for (int r = 1; r < rows; r++) {
+            if (matrix[r][0] == 0) {
+                for (int c = 1; c < cols; c++) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+
+        // Set the marked columns to zero
+        for (int c = 1; c < cols; c++) {
+            if (matrix[0][c] == 0) {
+                for (int r = 1; r < rows; r++) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+
+        // Set the first row to zero if needed
+        if (firstRowHasZero) {
+            for (int c = 0; c < cols; c++) {
+                matrix[0][c] = 0;
+            }
+        }
+
+        // Set the first column to zero if needed
+        if (firstColHasZero) {
+            for (int r = 0; r < rows; r++) {
+                matrix[r][0] = 0;
+            }
+        }        
     }
 };
-// @lc code=end
