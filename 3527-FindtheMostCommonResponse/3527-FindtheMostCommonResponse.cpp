@@ -1,4 +1,4 @@
-// Last updated: 4/27/2025, 6:59:13 AM
+// Last updated: 4/27/2025, 7:04:54 AM
 class Solution {
 public:
     string findCommonResponse(vector<vector<string>>& responses) {
@@ -22,11 +22,16 @@ public:
         string ans = "";
         int maxfreq = 0;
         for (auto& it : freq) {
-            if (it.second > maxfreq) {
-                ans = it.first;
+            if (it.second > maxfreq)
                 maxfreq = it.second;
-            } else if (it.second == maxfreq)
-                ans = min(ans, it.first);
+        }
+
+        for (auto& it : freq) {
+            if (it.second == maxfreq)
+                if (ans == "")
+                    ans = it.first;
+                else
+                    ans = min(ans, it.first);
         }
         return ans;
     }
