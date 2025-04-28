@@ -1,8 +1,7 @@
-// Last updated: 4/27/2025, 7:04:54 AM
+// Last updated: 4/28/2025, 8:41:29 AM
 class Solution {
 public:
     string findCommonResponse(vector<vector<string>>& responses) {
-        bool sameArray = true;
         int n = responses.size();
 
         unordered_map<string, int> freq;
