@@ -1,7 +1,6 @@
 class Solution {
 public:
     string findCommonResponse(vector<vector<string>>& responses) {
-        bool sameArray = true;
         int n = responses.size();
 
         unordered_map<string, int> freq;
