@@ -1,8 +1,7 @@
 <h2><a href="https://leetcode.com/problems/find-the-most-common-response">Find the Most Common Response</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given a 2D string array <code>responses</code> where each <code>responses[i]</code> is an array of strings representing survey responses from the <code>i<sup>th</sup></code> day.</p>
 
-<p>Return the <strong>most common</strong> response across all days after removing <strong>duplicate</strong> responses within each <code>responses[i]</code>. If there is a tie, return the <em>lexicographically smallest</em> response.</p>
-A string <code>a</code> is <strong>lexicographically smaller</strong> than a string <code>b</code> if in the first position where <code>a</code> and <code>b</code> differ, string <code>a</code> has a letter that appears earlier in the alphabet than the corresponding letter in <code>b</code>.<br />
-If the first <code>min(a.length, b.length)</code> characters do not differ, then the shorter string is the lexicographically smaller one.
+<p>Return the <strong>most common</strong> response across all days after removing <strong>duplicate</strong> responses within each <code>responses[i]</code>. If there is a tie, return the <em><span data-keyword="lexicographically-smaller-string">lexicographically smallest</span></em> response.</p>
+
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
