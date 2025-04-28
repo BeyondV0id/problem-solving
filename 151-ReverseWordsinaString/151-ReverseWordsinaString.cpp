@@ -1,25 +1,50 @@
-// Last updated: 4/28/2025, 5:10:53 PM
+// Last updated: 4/28/2025, 5:19:03 PM
 class Solution {
+private:
+    stack<string> strbuild(string s) {
+        stack<string> stk;
+        if (s.empty())
+            return stk;
+
+        int n = s.size();
+        int l = 0, r = 0;
+        while (r < n) {
+            if (s[r] != ' ') {
+                r++;
+                continue;
+            }
+
+            if (l != r) {
+                string c = s.substr(l, r - l);
+                stk.push(c);
+            }
+            do {
+                r++;
+            } while (r < n && s[r] == ' ');
+            l = r;
+        }
+
+        if (l != r) {
+            stk.push(s.substr(l, r - l));
+        }
+
+        return stk;
+    }
+
+    string stackTostr(stack<string>& stk) {
+        string result;
+        while (!stk.empty()) {
+            result += stk.top() + " ";
+            stk.pop();
+        }
+        if (!result.empty())
+            result.pop_back();
+        return result;
+    }
+
 public:
     string reverseWords(string s) {
-     int n=s.size();
-     string ans="";
-    reverse(s.begin(),s.end());
-    for(int i=0;i<n;i++){
-    string word="";
-    while(i<n && s[i]!=' '){
-        word+=s[i];
-        i++;
-    }
-     reverse(word.begin(),word.end());
-    
-  
-    if(word.length() >0){
-       
-        ans += " " + word;
-    }
-    }
-    return ans.substr(1);
-    
+        stack<string> builder = strbuild(s);
+        return stackTostr(builder);
     }
 };
