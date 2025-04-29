@@ -1,4 +1,4 @@
-// Last updated: 4/29/2025, 4:12:13 PM
+// Last updated: 4/29/2025, 4:12:19 PM
 class Solution {
 public:
     bool areOccurrencesEqual(string s) {
