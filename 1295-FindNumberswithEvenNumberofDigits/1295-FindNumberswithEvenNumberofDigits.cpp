@@ -1,19 +1,32 @@
-// Last updated: 4/30/2025, 1:28:08 PM
+// Last updated: 4/30/2025, 1:53:55 PM
 class Solution {
 private:
-    int numsDigit(int n){
-        return floor(log10(n))+1;
-    }
-public:
-    int findNumbers(vector<int>& nums) {
-        int n = nums.size();
-        int cnt = 0;
-        for(int num:nums){
-            if(numsDigit(num)%2==0)cnt++;
-
+    int sumDigits(int a) {
+        int sum = 0;
+        while (a > 0) {
+            sum += a % 10;
+            a = a / 10;
         }
-        return cnt;
+        return sum;
+    }
 
-        
+public:
+    int maximumSum(vector<int>& nums) {
+        int n = nums.size();
+        int sum = -1;
+        unordered_map<int, int> sumMap;
+        for (int i = 0; i < n; i++) {
+            int num = nums[i];
+            int digitSum = sumDigits(num);
+
+            if (sumMap.count(digitSum)) {
+                int newSum = num + sumMap[digitSum];
+                sum = max(sum, newSum);
+                sumMap[digitSum] = max(sumMap[digitSum], num);
+            } else {
+                sumMap[digitSum] = num;
+            }
+        }
+        return sum;
     }
 };
