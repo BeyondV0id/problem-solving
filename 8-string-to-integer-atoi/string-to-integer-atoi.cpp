@@ -12,6 +12,9 @@ public:
         int n = s.size();
 
         for (int i = 0; i < n; i++) {
+            while (i < n && s[i] == ' ' && !seenNum && !seenSign) {
+                i++;
+            }
             if (isdigit(s[i])) {
                 convert(s[i]);
                 seenNum = true;
@@ -20,9 +23,6 @@ public:
                 }
 
             } else {
-                if (s[i] == ' ' && !seenNum && !seenSign) {
-                    continue;
-                }
 
                 if ((s[i] == '+' || s[i] == '-') && !seenNum && !seenSign) {
                     sign = (s[i] == '+') ? +1 : -1;
@@ -45,6 +45,5 @@ public:
         if (result <= INT_MIN)
             return INT_MIN;
         return result;
-
     }
 };
