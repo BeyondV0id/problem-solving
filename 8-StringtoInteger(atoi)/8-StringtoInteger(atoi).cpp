@@ -1,44 +1,50 @@
-// Last updated: 5/2/2025, 11:16:50 AM
+// Last updated: 5/2/2025, 11:20:37 AM
 class Solution {
+private:
+    long result = 0;
+    int sign = 1;
+    bool seenSign = false;
+    bool seenNum = false;
+
+    void convert(char c) { result = result * 10 + (c - '0'); }
+
 public:
     int myAtoi(string s) {
-       int a=0;
-       bool sign =false;
-       int s1=1;
-       bool space=false;
-       long long num=0;
-       for(int i=0; i<s.size(); i++){
-            if(s[i]==' ' && space==false){
-                continue;
+        int n = s.size();
+
+        for (int i = 0; i < n; i++) {
+            while (i < n && s[i] == ' ' && !seenNum && !seenSign) {
+                i++;
             }
-            if(s[i]>='0'&& s[i]<='9'){
-                if(num>(INT_MAX -(s[i]-'0'))/10){
-                   return s1==1?INT_MAX:INT_MIN;
+            if (isdigit(s[i])) {
+                convert(s[i]);
+                seenNum = true;
+                if (result > INT_MAX) {
+                    return sign == 1 ? INT_MAX : INT_MIN;
                 }
-               
-                num=num*10+(s[i]-'0');
-                sign=true;
-                space=true;
-            }
-           
-           
-            else if((s[i]=='+'|| s[i]=='-') &&  sign==false){
-                if(s[i]=='-'){
-                    s1=-1;
+
+            } else {
+
+                if ((s[i] == '+' || s[i] == '-') && !seenNum && !seenSign) {
+                    sign = (s[i] == '+') ? +1 : -1;
+                    seenSign = true;
                 }
-                sign=true;
-                space=true;
+
+                else {
+                    break;
+                }
             }
-            else{
-               break;
-            }
-           
-          
-   
-       }
-      
-       long long ans=s1*num;
-       return ans;
-      
+        }
+
+        if (!seenNum)
+            return 0;
+
+        result = result * sign;
+
+        if (result >= INT_MAX)
+            return INT_MAX;
+        if (result <= INT_MIN)
+            return INT_MIN;
+        return result;
     }
 };
