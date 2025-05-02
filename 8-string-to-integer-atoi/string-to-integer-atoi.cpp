@@ -15,11 +15,9 @@ public:
             if (isdigit(s[i])) {
                 convert(s[i]);
                 seenNum = true;
-
-                if (sign == 1 && result > INT_MAX)
-                    return INT_MAX;
-                if (sign == -1 && -result < INT_MIN)
-                    return INT_MIN;
+                if (result > INT_MAX) {
+                    return sign == 1 ? INT_MAX : INT_MIN;
+                }
 
             } else {
                 if (s[i] == ' ' && !seenNum && !seenSign) {
@@ -46,7 +44,7 @@ public:
             return INT_MAX;
         if (result <= INT_MIN)
             return INT_MIN;
+        return result;
 
-        return static_cast<int>(result);
     }
 };
