@@ -1,22 +1,20 @@
 class Solution {
 public:
     bool equalFrequency(string word) {
-        vector<int> freq(26, 0);
-        for (char c : word) {
-            freq[c - 'a']++;
-        }
-        for (int i = 0; i < 26; i++) {
-            if (freq[i] == 0)
-                continue;
-            freq[i]--;
-            unordered_set<int> freqSet;
-            for (int f : freq)
-                if (f > 0)
-                    freqSet.insert(f);
-            bool allSameFreq = (freqSet.size() == 1);
-            if (allSameFreq)
+        unordered_map<char, int> freq;
+        int n = word.size();
+        for (auto& ch : word)
+            freq[ch]++;
+        for (auto& ch : word) {
+            freq[ch]--;
+            if (freq[ch] == 0)
+                freq.erase(ch);
+            unordered_set<int> check;
+            for (auto& it : freq)
+                check.insert(it.second);
+            if (check.size() == 1)
                 return true;
-            freq[i]++;
+            freq[ch]++;
         }
         return false;
     }
