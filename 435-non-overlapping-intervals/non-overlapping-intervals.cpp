@@ -1,9 +1,3 @@
-#include <vector>
-#include <algorithm>
-#include <iostream>
-
-using namespace std;
-
 class Solution {
 private:
     void merge(vector<vector<int>>& intervals, int left, int mid, int right) {
