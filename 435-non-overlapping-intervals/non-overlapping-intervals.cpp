@@ -4,31 +4,31 @@ private:
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
-        vector<vector<int>> leftArr(n1), rightArr(n2);
+        vector<vector<int>> la(n1), ra(n2);
 
         for (int i = 0; i < n1; i++)
-            leftArr[i] = intervals[left + i];
+            la[i] = intervals[left + i];
         for (int j = 0; j < n2; j++)
-            rightArr[j] = intervals[mid + 1 + j];
+            ra[j] = intervals[mid + 1 + j];
         int i = 0, j = 0, k = left;
         while (i < n1 && j < n2) {
-            if (leftArr[i][1] <= rightArr[j][1]) {
-                intervals[k] = leftArr[i];
+            if (la[i][1] <= ra[j][1]) {
+                intervals[k] = la[i];
                 i++;
             } else {
-                intervals[k] = rightArr[j];
+                intervals[k] = ra[j];
                 j++;
             }
             k++;
         }
 
         while (i < n1) {
-            intervals[k] = leftArr[i];
+            intervals[k] = la[i];
             i++;
             k++;
         }
         while (j < n2) {
-            intervals[k] = rightArr[j];
+            intervals[k] = ra[j];
             j++;
             k++;
         }
