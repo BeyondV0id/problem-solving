@@ -7,8 +7,9 @@ public:
         int rightWall = matrix[0].size() - 1;
         int leftWall = 0;
         int direction = 0;
+        int totalElements = matrix.size()*matrix[0].size();
 
-        while (topWall <= bottomWall && leftWall <= rightWall) {
+        while (res.size() < totalElements) {
             if (direction == 0) {
                 for (int i = leftWall; i <= rightWall; i++) {
                     res.push_back(matrix[topWall][i]);
