@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool threeConsecutiveOdds(vector<int>& arr) {
-        if (arr.size() == 1)
+        if (arr.size() <3)
             return false;
         int size = 0;
         for (auto& num : arr) {
