@@ -9,13 +9,13 @@ private:
         if (isdigit(s[indx])) {
             solve(s, indx + 1);
         } else {
-            //first branch
+            //left branch
             solve(s, indx + 1);
             if (islower(s[indx]))
                 s[indx] = toupper(s[indx]);
             else
                 s[indx] = tolower(s[indx]);
-            //second
+            //right branch
             solve(s, indx + 1);
             if (islower(s[indx]))
                s[indx] =  toupper(s[indx]);
