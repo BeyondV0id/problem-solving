@@ -10,7 +10,7 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    let result = [],subSol = [];
+    let result = [];
     function backtrack(openCnt,closeCnt,subSol){
         if(subSol.length === 2*n){
             result.push(subSol.join(''));
@@ -29,7 +29,7 @@ var generateParenthesis = function(n) {
 
         
     }
-    backtrack(0,0,subSol);
+    backtrack(0,0,[]);
     return result;
 };
 // @lc code=end
