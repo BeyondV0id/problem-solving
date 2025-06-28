@@ -1,32 +1,30 @@
-#include<vector>
-#include<queue>
-#include<algorithm>
-#include<unordered_map>
-using namespace std;
+
 class Solution {
+    private:
+    static bool sortByValue(const pair<int, int>& a, const pair<int, int>& b) {
+        return a.first > b.first;
+    }
+    static bool sortByIndx(const pair<int, int>& a, const pair<int, int>& b) {
+        return a.second < b.second;
+    }
 public:
     vector<int> maxSubsequence(vector<int>& nums, int k) {
-        vector<int>res;
-        priority_queue<int,vector<int>,greater<int>>minHeap;
-        unordered_map<int,int>freq;
-        for(auto & it: nums){
-            minHeap.push(it);
-            if(minHeap.size() > k)
-                minHeap.pop();
+        vector<pair<int,int>>indxPair;
+        for(int i = 0;i<nums.size();i++)
+            indxPair.push_back({nums[i],i});
+
+        sort(indxPair.begin(),indxPair.end(),sortByValue);
+        indxPair.resize(k);
+        sort(indxPair.begin(),indxPair.end(),sortByIndx);
+        vector<int>result;
+        for(const auto&it:indxPair){
+            result.push_back(it.first);
         }
-        while(!minHeap.empty()){
-            freq[minHeap.top()]++;
-            minHeap.pop();
-        }
-        for(auto &it : nums){
-            if(freq[it]>0){
-                res.push_back(it);
-                freq[it]--;
-            }
-        }
-        return res;
+        return result;
 
         
+        
+
     }
 };
 // @lc code=end
