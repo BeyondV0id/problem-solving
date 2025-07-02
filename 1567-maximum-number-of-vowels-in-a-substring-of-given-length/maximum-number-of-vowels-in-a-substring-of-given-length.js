@@ -15,7 +15,7 @@ var maxVowels = function(s, k) {
     const n = s.length;
     let l=0,r=0;
     function isVowel(char){
-        return 'aeiouAEIOU'.includes(char);
+        return 'aeiou'.includes(char);
     }
     while(r<n){
         const char = s[r++];
@@ -29,7 +29,7 @@ var maxVowels = function(s, k) {
         maxCnt = Math.max(maxCnt,cnt);
 
     }
-    return maxCnt;  
+    return maxCnt;
 };
 // @lc code=end
 
