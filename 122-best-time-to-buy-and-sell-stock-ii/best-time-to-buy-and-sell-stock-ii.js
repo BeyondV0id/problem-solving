@@ -1,23 +1,26 @@
 var maxProfit = function(prices) {
     let totalProfit = 0;
-    let maxprofit = -1;
-    let maxNumber = prices[0];
-    let minElement = prices[0];
+    let maxProfitInSegment = -1;
+    let currentHigh = prices[0];
+    let currentLow = prices[0];
+
     for (let i = 1; i < prices.length; i++) {
-        if(prices[i]>maxNumber){
-            maxprofit = Math.max(maxprofit, prices[i]-minElement);
-            maxNumber = Math.max(maxNumber,prices[i]);
-        }
-        else{
-            if(maxprofit != -1)
-                totalProfit+=maxprofit;
-            minElement = prices[i];
-            maxNumber = prices[i];
-            maxprofit = -1;
+        if (prices[i] > currentHigh) {
+            maxProfitInSegment = Math.max(maxProfitInSegment, prices[i] - currentLow);
+            currentHigh = prices[i];
+        } else {
+            if (maxProfitInSegment !== -1) {
+                totalProfit += maxProfitInSegment;
+            }
+            currentLow = prices[i];
+            currentHigh = prices[i];
+            maxProfitInSegment = -1;
         }
     }
-     if (maxprofit !== -1) {
-        totalProfit += maxprofit;
+
+    if (maxProfitInSegment !== -1) {
+        totalProfit += maxProfitInSegment;
     }
-    return totalProfit;    
+
+    return totalProfit;
 };
