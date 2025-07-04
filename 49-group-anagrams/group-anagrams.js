@@ -17,8 +17,7 @@ var groupAnagrams = function(strs) {
             map[key] = [];
         map[key].push(word);
     }
-    const result = Object.values(map);
-    return result;
+    return Object.values(map);
 
 
 
