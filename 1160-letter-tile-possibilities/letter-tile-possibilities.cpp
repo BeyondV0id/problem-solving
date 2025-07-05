@@ -1,14 +1,3 @@
-/*
- * @lc app=leetcode id=1079 lang=cpp
- *
- * [1079] Letter Tile Possibilities
- */
-
-// @lc code=start
-#include<vector>
-#include<unordered_map>
-#include<algorithm>
-using namespace std;
 class Solution {
 private:
     int backtrack(string tiles,vector<bool>&visited,int n){
