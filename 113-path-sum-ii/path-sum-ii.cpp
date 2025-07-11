@@ -9,6 +9,8 @@ private:
         if (root->left == NULL && root->right == NULL &&
             targetSum == root->val) {
             result.push_back(path);
+            path.pop_back();
+            return;
         }
 
         dfs(root->left, targetSum - root->val);
