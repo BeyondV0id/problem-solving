@@ -1,17 +1,6 @@
-/*
- * @lc app=leetcode id=2033 lang=cpp
- *
- * [2033] Minimum Operations to Make a Uni-Value Grid
- */
-
-// @lc code=start
-#include <algorithm>
-#include <vector>
-using namespace std;
 class Solution {
 private:
     vector<int> arr;
-
 public:
     int minOperations(vector<vector<int>>& grid, int x) {
         for (auto& row : grid)
