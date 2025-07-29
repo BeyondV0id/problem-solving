@@ -25,12 +25,10 @@ public:
                 i--;
                 stk.push(stoi(num));
                 num = "";
-            }
-            else if (s[i] == '[') {
+            } else if (s[i] == '[') {
                 strstk.push(cur);
                 cur = "";
-            }
-            else if (s[i] == ']') {
+            } else if (s[i] == ']') {
                 string prev = "";
                 if (strstk.empty())
                     prev = "";
