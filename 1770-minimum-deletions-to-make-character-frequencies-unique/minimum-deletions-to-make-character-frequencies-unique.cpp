@@ -1,6 +1,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 using namespace std;
 class Solution {
 public:
@@ -12,7 +13,8 @@ public:
             freq[it]++;
         }
         for (auto& [ch, cnt] : freq) {
-            while (cnt > 0 && freq_uniqe_set.count(cnt)) {
+            while (cnt > 0 &&
+                   freq_uniqe_set.find(cnt) != freq_uniqe_set.end()) {
                 cnt--;
                 minOps++;
             }
