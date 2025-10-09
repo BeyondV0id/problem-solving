@@ -18,8 +18,8 @@ var findFrequentTreeSum = function (root) {
     const lval = dfs(root.left);
     const rval = dfs(root.right);
     let sum = lval + rval + root.val;
-    freq.set(sum,(freq.get(sum) || 0) + 1);
-    console.log(sum);
+    freq.set(sum, (freq.get(sum) || 0) + 1);
+    //console.log(sum);
     return sum;
   };
   dfs(root);
