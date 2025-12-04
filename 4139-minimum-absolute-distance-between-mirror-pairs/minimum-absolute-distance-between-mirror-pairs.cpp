@@ -12,16 +12,14 @@ private:
 public:
     int minMirrorPairDistance(vector<int>& nums) {
 
-        unordered_map<int,int> indexMap;
+        unordered_map<int,int> nextPos;
         int res = INT_MAX;
 
         for (int i = nums.size() - 1; i >= 0; i--) {
             int reverse = rev(nums[i]);
-            if (indexMap.count(reverse))
-                res = min(res, indexMap[reverse] - i);
-
-            if (!indexMap.count(nums[i]))
-                indexMap[nums[i]] = i;
+            if (nextPos.count(reverse))
+                res = min(res, nextPos[reverse] - i);
+            nextPos[nums[i]] = i;
         }
 
         return res == INT_MAX ? -1 : res;
