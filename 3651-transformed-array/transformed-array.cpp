@@ -8,7 +8,7 @@ public:
             if (nums[i] > 0) {
                 indx = (nums[i] + i) % n;
             } else if (nums[i] < 0) {
-                indx = abs((i + nums[i]%n + n) % n);
+                indx = abs((i + nums[i] % n + n) % n);
             } else {
                 indx = i;
             }
