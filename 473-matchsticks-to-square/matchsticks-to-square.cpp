@@ -33,11 +33,13 @@ public:
             sum += it;
         }
         sort(matchsticks.begin(),matchsticks.end());
+        
 
         vector<int> sides(4, 0);
         if (sum % 4 != 0)
             return false;
         int side_len = sum / 4;
+        if (matchsticks[0] > side_len) return false;
         return backtrack(matchsticks, 0, sides, side_len);
     }
 };
