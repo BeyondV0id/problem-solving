@@ -3,24 +3,33 @@ public:
     vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
         int rows = grid.size();
         int cols = grid[0].size();
-        int totalElements = rows * cols;
 
-        k %= totalElements;
+        vector<int> flat;
 
-        vector<vector<int>> shiftedGrid(rows, vector<int>(cols));
-
-        for (int i = 0; i < totalElements; i++) {
-            int newPosition = (i + k) % totalElements;
-
-            int currentRow = i / cols;
-            int currentCol = i % cols;
-
-            int newRow = newPosition / cols;
-            int newCol = newPosition % cols;
-
-            shiftedGrid[newRow][newCol] = grid[currentRow][currentCol];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                flat.push_back(grid[row][col]);
+            }
         }
 
-        return shiftedGrid;
+        int totalElements = flat.size();
+        k %= totalElements;
+
+        vector<int> shifted(totalElements);
+
+        for (int i = 0; i < totalElements; i++) {
+            shifted[(i + k) % totalElements] = flat[i];
+        }
+
+        vector<vector<int>> result(rows, vector<int>(cols));
+
+        int index = 0;
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                result[row][col] = shifted[index++];
+            }
+        }
+
+        return result;
     }
 };
