@@ -23,8 +23,5 @@ public:
         prevOfslow->next = slow->next;
         return head;
         
-
-        
-        
     }
 };
