@@ -12,14 +12,17 @@ public:
 
         sort(vals.begin(), vals.end());
 
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
+        if (vals.empty())
+            return nullptr;
 
-        for (int x : vals) {
-            tail->next = new ListNode(x);
-            tail = tail->next;
+        ListNode* head = new ListNode(vals[0]);
+        ListNode* curr = head;
+
+        for (int i = 1; i < vals.size(); i++) {
+            curr->next = new ListNode(vals[i]);
+            curr = curr->next;
         }
 
-        return dummy.next;
+        return head;
     }
 };
