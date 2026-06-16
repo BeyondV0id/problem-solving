@@ -24,8 +24,8 @@ public:
                 pq.push(node);
         }
 
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
+        ListNode temp(0);
+        ListNode* tail = &temp;
 
         while (!pq.empty()) {
             ListNode* curr = pq.top();
@@ -38,6 +38,6 @@ public:
                 pq.push(curr->next);
         }
 
-        return dummy.next;
+        return temp.next;
     }
 };
