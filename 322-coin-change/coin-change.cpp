@@ -1,31 +1,34 @@
+// @leet imports start
+#include <bits/stdc++.h>
+#include <climits>
+using namespace std;
+// @leet imports end
+
+// @leet start
 class Solution {
-public:
-    int solve(int ind, int amount, vector<int>& coins,
-              vector<vector<int>>& dp) {
+  private:
+    int solve(vector<int> &coins, int amount, vector<int> &dp) {
 
-        if (amount == 0) return 0;
+      if(amount == 0)return 0;
+      if(amount < 0)return 1e9;
+      int n = coins.size();
+      if(dp[amount] != -1)return dp[amount];
 
-        if (ind >= coins.size()) return 1e9;
-
-        if (dp[ind][amount] != -1)
-            return dp[ind][amount];
-
-        int take = 1e9;
-        if (coins[ind] <= amount)
-            take = 1 + solve(ind, amount - coins[ind], coins, dp);
-
-        int notTake = solve(ind + 1, amount, coins, dp);
-
-        return dp[ind][amount] = min(take, notTake);
+      int mini = 1e9;
+      for(int i = 0; i < n; i++){
+        if(coins[i] <= amount){
+          mini = min(mini,1 + solve(coins,amount-coins[i],dp));
+        }
+      }
+      return dp[amount] = mini;
     }
 
-    int coinChange(vector<int>& coins, int amount) {
-        int n = coins.size();
-
-        vector<vector<int>> dp(n, vector<int>(amount + 1, -1));
-
-        int ans = solve(0, amount, coins, dp);
-
-        return ans >= 1e9 ? -1 : ans;
+  public:
+    int coinChange(vector<int> &coins, int amount) {
+      int n = coins.size();
+      vector<int>dp(amount+1,-1);
+      int ans = solve(coins,amount,dp);
+      return ans >= 1e9 ? -1 : ans;
     }
 };
+// @leet end
