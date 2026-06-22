@@ -1,27 +1,31 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int size = height.size();
-        int minHeight;
-        int width;
-        int area = 0,maxArea =0;
-
-        int left = 0;
-        int right = size-1;
-        while(left<=right){
-            minHeight = min(height[left],height[right]);
-            width = (right-left);
-            area  = width*minHeight;
-            maxArea = maxArea > area ? maxArea : area;
-            if(height[left]<height[right]){
+        int left = 0,right = height.size() - 1,maxi = 0;
+        while(left<right){
+            int h = min(height[left],height[right]),width = right-left;
+            maxi = max(maxi,h*width);
+            if(height[left]<height[right])
                 left++;
-            }
-            else{
+            else
                 right--;
-            }
-
         }
-        return maxArea;
-        
+        return maxi;
     }
 };
+
+// class Solution {
+// public:
+//     int maxArea(vector<int>& height) {
+//         int maxi = INT_MIN;
+//         for(int i=0;i<height.size()-1;i++){
+//             for(int j=i+1;j<height.size();j++){
+//                 maxi = max(maxi,(min(height[i],height[j])*(j-i)));
+//             }
+//         }
+//         return maxi;
+//     }
+// };
+
+
+
