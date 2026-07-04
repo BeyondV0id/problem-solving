@@ -1,36 +1,44 @@
-// @leet imports start
-#include <bits/stdc++.h>
-using namespace std;
-// @leet imports end
-
-// @leet start
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
-  public:
-    int maxLevelSum(TreeNode *root) {
-      queue<TreeNode*>q;
-      int curlvl = 1;
-      int reslvl = 1;
-      int maxSum = INT_MIN;
-      q.push(root);
-      while(!q.empty()){
-        int sum = 0;
-        int n = q.size();
-        for(int i = 0;i < n;i++){
-          TreeNode* node = q.front();
-          q.pop();
-          sum += node->val;
-          if(node->left)q.push(node->left);
-          if(node->right)q.push(node->right);
+public:
+    int maxLevelSum(TreeNode* root) {
+
+        queue<TreeNode*>q;
+        q.push(root);
+        int maxSum = INT_MIN;
+        int curLvl = 1;
+        int res = 1;
+
+        while(!q.empty()){
+            int curSum = 0;
+            int n = q.size();
+
+
+            for(int i = 0; i < n; i++){
+                TreeNode* node = q.front();
+                curSum += node->val;
+
+                if(node->left)q.push(node->left);
+                if(node->right)q.push(node->right);
+                q.pop();
+            }
+            if(maxSum < curSum){
+                maxSum = curSum;
+                res = curLvl;
+            }
+            curLvl++;
         }
-        if(sum > maxSum){
-          reslvl = curlvl;
-          maxSum = sum;
-        }
-        curlvl++;
-      }
-      return reslvl;
+        return res;
     }
+
 };
-// @leet end
-
-
