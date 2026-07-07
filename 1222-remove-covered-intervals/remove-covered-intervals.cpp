@@ -17,10 +17,7 @@ class Solution {
         vector<int> prev = {intervals[0]};
 
         for (int i = 1; i < n; i++) {
-            int a = intervals[i][0];
-            int b = intervals[i][1];
-
-            if ( b <= prev[1]) {
+            if (intervals[i][1] <= prev[1]) {
                 continue;
             }
             cnt++;
