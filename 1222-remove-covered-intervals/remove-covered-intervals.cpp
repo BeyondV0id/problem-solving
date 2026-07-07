@@ -20,7 +20,7 @@ class Solution {
             int a = intervals[i][0];
             int b = intervals[i][1];
 
-            if (a <= prev[1] && b <= prev[1]) {
+            if ( b <= prev[1]) {
                 continue;
             }
             cnt++;
