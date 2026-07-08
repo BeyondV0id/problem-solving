@@ -1,28 +1,28 @@
-#include <vector>
-using namespace std;
-
 class Solution {
 private:
-    vector<vector<int>> result;
-    vector<int> array;
+    vector<vector<int>>result;
+    vector<int>sub;
+    void backtrack(vector<int>&candidates, int index, int curSum, int target){
+        int n = candidates.size();
 
-    void backtrack(vector<int>& candidates, int target, int start, int sum) {
-        if (sum == target) {
-            result.push_back(array);
+        if(curSum > target){
             return;
         }
-        if (sum > target) return;
+        if(curSum == target){
+            result.push_back(sub);
+            return;
+        }
 
-        for (int i = start; i < candidates.size(); i++) {
-            array.push_back(candidates[i]);                     
-            backtrack(candidates, target, i, sum + candidates[i]); 
-            array.pop_back();                                 
+        for(int i = index; i < n; i++){
+            sub.push_back(candidates[i]);
+            backtrack(candidates,i,curSum+candidates[i],target);
+            sub.pop_back();
         }
     }
-
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        backtrack(candidates, target, 0, 0);
+        backtrack(candidates,0,0,target);
         return result;
+        
     }
 };
