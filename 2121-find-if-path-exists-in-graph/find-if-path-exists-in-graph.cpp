@@ -1,32 +1,31 @@
-class Solution {
-private:
-    void dfs(vector<vector<int>>& graph, int source, vector<int>& vis) {
 
-        vis[source] = 1;
-
-        for (auto neigh : graph[source]) {
-            if (vis[neigh] == -1)
-                dfs(graph, neigh, vis);
-        }
-    }
-
+class UnionFind {
+    vector<int> parent;
 public:
-    bool validPath(int n, vector<vector<int>>& edges, int source,
-                   int destination) {
+    UnionFind(int n) {
+        parent.resize(n);
+        for(int i = 0; i < n; i++) parent[i] = i;
+    }
+    
+    int find(int x) {
+        if(parent[x] != x) 
+            parent[x] = find(parent[x]);
+        return parent[x];
+    }
+    
+    void unite(int x, int y) {
+        int px = find(x), py = find(y);
+        if(px != py) parent[px] = py;
+    }
+};
 
-        vector<vector<int>> graph(n);
-        vector<int> vis(n, -1);
-
-        for (auto& edge : edges) {
-            int a = edge[0];
-            int b = edge[1];
-
-            graph[a].push_back(b);
-            graph[b].push_back(a);
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        UnionFind uf(n);
+        for(auto &e : edges) {
+            uf.unite(e[0], e[1]);
         }
-
-        dfs(graph, source, vis);
-
-        return vis[destination] == 1;
+        return uf.find(source) == uf.find(destination);
     }
 };
