@@ -28,6 +28,7 @@ public:
 
             if (time > dist[x][y])
                 continue;
+                
 
             if (x == m - 1 && y == n - 1)
                 return time;
