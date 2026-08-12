@@ -1,78 +1,71 @@
-class Solution {
-  private:
-    void dfs(int node, vector<vector<int>> &adj, vector<bool> &vis) {
-        vis[node] = true;
+#include <bits/stdc++.h>
+using namespace std;
 
-        for (int nei : adj[node]) {
-            if (!vis[nei]) {
-                dfs(nei, adj, vis);
-            }
-        }
+class DSU {
+private:
+    vector<int> parent;
+    vector<int> rank;
+
+public:
+    DSU(int n) {
+        parent.resize(n);
+        rank.resize(n);
+        for (int i = 0; i < n; i++)
+            parent[i] = i;
     }
 
-    int find(int x, vector<int> &parent) {
-        while (x != parent[x]) {
-            parent[x] = parent[parent[x]];
-            x = parent[x];
-        }
-        return x;
+    int find(int x) {
+        if (parent[x] == x)
+            return x;
+
+        parent[x] = find(parent[x]); // path compression
+        return parent[x];
     }
 
-    bool isConnected(int x, int y, vector<int> &parent) {
-        return (find(x, parent) == find(y, parent));
-    }
+    bool unite(int x, int y) {
 
-    bool united(int v1, int v2, vector<int> &parent, vector<int> &rank) {
-        int parent1 = find(v1, parent);
-        int parent2 = find(v2, parent);
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX == rootY)
+            return false;
 
-        if (parent1 == parent2) return false;
+        int rankX = rank[rootX];
+        int rankY = rank[rootY];
 
-        int rank1 = rank[parent1];
-        int rank2 = rank[parent2];
+        if (rankX > rankY)
+            parent[rootY] = rootX;
 
-        if (rank1 < rank2) {
-            parent[parent1] = parent2;
-        } else if (rank1 > rank2) {
-            parent[parent2] = parent1;
-        } else {
-            parent[parent2] = parent1;
-            rank[parent1]++;
+        else if (rankX < rankY)
+            parent[rootX] = rootY;
+        else {
+            parent[rootY] = rootX;
+            rank[rootX]++;
         }
-
         return true;
     }
+    bool isConnected(int x, int y) {
+        if (find(x) == find(y))
+            return true;
+        return false;
+    }
+};
 
-  public:
-    int findCircleNum(vector<vector<int>> &isConnected) {
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
         int V = isConnected.size();
-
-        vector<int> parent(V);
-        vector<int> rank(V, 1);
-
-        for (int i = 0; i < V; i++) {
-            parent[i] = i;
-        }
-
-        int cnt = 0;
-        vector<vector<int>> adj(V);
+        DSU dsu(V);
+        vector<vector<int>> edges(V);
+        int components = V;
 
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
                 if (i != j && isConnected[i][j] != 0) {
-                    adj[i].push_back(j);
+                    if (dsu.unite(i, j))
+                        components--;
                 }
             }
         }
-
-        vector<bool> visited(V, false);
-        for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
-                dfs(i, adj, visited);
-                cnt++;
-            }
-        }
-
-        return cnt;
+        return components;
     }
 };
