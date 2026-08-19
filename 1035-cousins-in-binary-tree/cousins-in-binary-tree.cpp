@@ -1,51 +1,45 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
- * };
- */
 class Solution {
-private:
-    unordered_map<int, int> getParent;
-    unordered_map<int, int> getHeight;
-
-    void helper(TreeNode* root, int height) {
-        if (root == nullptr)
-            return;
-
-        if (root->left) {
-            getParent[root->left->val] = root->val;
-            getHeight[root->left->val] = height;
-            helper(root->left, height + 1);
-        }
-        if (root->right) {
-            getParent[root->right->val] = root->val;
-            getHeight[root->right->val] = height;
-            helper(root->right, height + 1);
-        }
-    }
-
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        helper(root,0);
+        queue<TreeNode*> q;
+        q.push(root);
 
-        if(x == root->val || y == root->val)return false;
+        while (!q.empty()) {
+            int size = q.size();
+            bool fX = false;
+            bool fY = false;
 
-        int parentX = getParent[x];
-        int parentY = getParent[y];
-        int heightX = getHeight[x];
-        int heightY = getHeight[y];
- 
-        if(parentX == parentY)return false;
-        if(heightX != heightY)return false;
+            for (int i = 0; i < size; i++) {
+                TreeNode* node = q.front();
+                q.pop();
 
-        return true;
+                if (node->left && node->right) {
+                    if ((node->left->val == x && node->right->val == y) ||
+                        (node->left->val == y && node->right->val == x)) {
+                        return false;
+                    }
+                }
 
+                if (node->val == x)
+                    fX = true;
+
+                if (node->val == y)
+                    fY = true;
+
+                if (node->left)
+                    q.push(node->left);
+
+                if (node->right)
+                    q.push(node->right);
+            }
+
+            if (fX && fY)
+                return true;
+
+            if (fX || fY)
+                return false;
+        }
+
+        return false;
     }
 };
