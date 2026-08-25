@@ -1,24 +1,17 @@
-// @leet imports start
-#include <bits/stdc++.h>
-#include <deque>
-using namespace std;
-// @leet imports end
-
-// @leet start
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> res;
-        deque<int> dq;
 
-        for (int i = 0; i < n; i++) {
+        deque<int> dq;
+        vector<int> res;
+
+        for (int i = 0; i < nums.size(); i++) {
             while (!dq.empty() && nums[dq.back()] < nums[i]) {
                 dq.pop_back();
             }
             dq.push_back(i);
 
-            while (!dq.empty() && dq.front() <= i - k) {
+            while (!dq.empty() && i - dq.front() >= k) {
                 dq.pop_front();
             }
             if (i >= k - 1) {
@@ -28,4 +21,3 @@ public:
         return res;
     }
 };
-// @leet end
