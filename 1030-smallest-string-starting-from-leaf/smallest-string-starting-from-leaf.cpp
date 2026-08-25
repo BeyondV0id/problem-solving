@@ -1,10 +1,3 @@
-// @leet imports start
-#include <bits/stdc++.h>
-using namespace std;
-// @leet imports end
-
-// @leet start
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -13,32 +6,33 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
 class Solution {
 private:
-    string res = "";
-    void dfs(TreeNode* root, string curr) {
-        if (!root)
-            return;
+    string res = "{";
+    void dfs(TreeNode *root,string cur){
 
-        curr = char('a' + root->val) + curr;
+        if(!root)return;
 
-        if (!root->left && !root->right) {
-            if (res == "" || curr < res) {
-                res = curr;
-            }
+        cur = char('a' + (root->val)) + cur;
+
+        if(!root->left && !root->right){
+            res = min(res,cur);
             return;
         }
-        dfs(root->left,curr);
-        dfs(root->right,curr);
-    }
 
+
+        dfs(root->left,cur);
+        dfs(root->right,cur);
+
+        
+    }
 public:
     string smallestFromLeaf(TreeNode* root) {
-        dfs(root, "");
+        string cur;
+        dfs(root,cur);
         return res;
     }
 };
