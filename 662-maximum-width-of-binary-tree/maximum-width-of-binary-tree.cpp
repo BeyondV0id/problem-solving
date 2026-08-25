@@ -26,7 +26,7 @@ public:
             for (int i = 0; i < n; i++) {
                 auto [node, indx] = q.front();
                 q.pop();
-                indx -= firstIndx;//avoid overflow using relative distance
+                indx -= firstIndx;
                 if (node->left) {
                     q.push({node->left, 2 * indx + 1});
                 }
