@@ -12,7 +12,7 @@ private:
             return dp[i][open];
         }
 
-        int ans = false;
+        bool ans = false;
         if (s[i] == '(') {
             ans = solve(s, i + 1, open + 1);
 
