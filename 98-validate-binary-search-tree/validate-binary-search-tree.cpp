@@ -6,21 +6,30 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
+
 private:
-    bool dfs(TreeNode* root, long long min, long long max){
-        if(!root)return true;
-        if(root->val >= max || root->val <= min)
+    bool dfs(TreeNode* root, long long max, long long min) {
+
+        if (!root)
+            return true;
+
+        if (root->val >= max || root->val <= min)
             return false;
-        return (dfs(root->left,min,root->val) && dfs(root->right,root->val,max));
+
+        if (dfs(root->left, root->val, min) == false)
+            return false;
+
+        if (dfs(root->right, max, root->val) == false)
+            return false;
+
+        return true;
     }
+
 public:
-    bool isValidBST(TreeNode* root) {
-       if(!root)return true;
-       return dfs(root,LLONG_MIN,LLONG_MAX);
-        
-    }
+    bool isValidBST(TreeNode* root) { return dfs(root, LLONG_MAX, LLONG_MIN); }
 };
