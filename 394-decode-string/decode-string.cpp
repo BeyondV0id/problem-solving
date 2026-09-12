@@ -1,52 +1,39 @@
-/*
- * @lc app=leetcode id=394 lang=cpp
- *
- * [394] Decode String
- */
-
-// @lc code=start
+#include <bits/stdc++.h>
+using namespace std;
 class Solution {
-private:
-    stack<int> stk;
-    stack<string> strstk;
-    string cur = "";
-    string num = "";
-
 public:
     string decodeString(string s) {
         int n = s.size();
+        stack<int> stk1;
+        stack<string> stk2;
+        string res = "";
+
+        int num = 0;
 
         for (int i = 0; i < n; i++) {
             if (isdigit(s[i])) {
-                while (i < n && isdigit(s[i])) {
-                    num += s[i];
-                    i++;
-                }
-                i--;
-                stk.push(stoi(num));
-                num = "";
+                num = num * 10 + s[i] - '0';
             } else if (s[i] == '[') {
-                strstk.push(cur);
-                cur = "";
+                stk1.push(num);
+                stk2.push(res);
+                res = "";
+                num = 0;
             } else if (s[i] == ']') {
-                string prev = "";
-                if (strstk.empty())
-                    prev = "";
-                else
-                    prev = strstk.top();
-                string temp = "";
-                int cnt = stk.top();
-                stk.pop();
-                strstk.pop();
+                int cnt = stk1.top();
+                stk1.pop();
+                string prev = stk2.top();
+                stk2.pop();
+
+                string repeat = "";
                 for (int i = 0; i < cnt; i++) {
-                    temp += cur;
+                    repeat += res;
                 }
-                cur = prev + temp;
+                res = prev + repeat;
+
             } else {
-                cur += s[i];
+                res += s[i];
             }
         }
-        return cur;
+        return res;
     }
 };
-// @lc code=end
