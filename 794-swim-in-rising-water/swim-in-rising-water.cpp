@@ -49,21 +49,19 @@ public:
         }
         int lastVal = grid[n - 1][n - 1];
 
-        int low = lastVal;
-        int high = maxxi;
+        int l = lastVal;
+        int h = maxxi;
 
-        int ans = high;
+        while (l < h) {
+            int mid = l + (h - l) / 2;
 
-        while (low <= high) {
-            int t = low + (high - low) / 2;
-
-            if (canReach(grid, t)) {
-                high = t - 1;
-                ans = t;
+            if (canReach(grid, mid)) {
+                h = mid;
             } else {
-                low = t + 1;
+                l = mid + 1;
             }
         }
-        return ans;
+
+        return l;
     }
 };
