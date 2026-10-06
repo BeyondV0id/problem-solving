@@ -1,31 +1,21 @@
-/*
- * @lc app=leetcode id=921 lang=cpp
- *
- * [921] Minimum Add to Make Parentheses Valid
- */
-
-// @lc code=start
-#include <stack>
-#include <string>
-using namespace std;
 class Solution {
-private:
-    stack<char> stk;
-
 public:
     int minAddToMakeValid(string s) {
-        int cnt = 0;
-        for (auto& ch : s) {
-            if (ch == '(')
-                stk.push(ch);
-            else if (ch == ')') {
-                if (!stk.empty() && stk.top() == '(')
-                    stk.pop();
-                else
-                    cnt++;
+        int open = 0;
+        int close = 0;
+        int flag = 0;
+
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(')
+                open++;
+            else {
+                if (open > 0) {
+                    open--;
+                } else
+                    close++;
             }
         }
-        return cnt + stk.size();
+
+        return abs(open + close);
     }
 };
-// @lc code=end
